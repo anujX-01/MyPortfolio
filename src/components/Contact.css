@@ -1,0 +1,285 @@
+/* CONTACT SECTION - EDITORIAL LAYOUT */
+
+.contact-section {
+  padding: 8rem 0;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.editorial-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  margin-top: 2rem;
+}
+
+/* --- Left Side: Information --- */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact-headline {
+  font-family: 'Georgia', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: normal;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.contact-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 4rem;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.info-icon {
+  font-size: 2rem;
+  color: var(--text-primary);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.info-row:hover .info-icon {
+  opacity: 1;
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.info-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.info-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.info-value:hover {
+  color: var(--accent-color);
+}
+
+/* --- Right Side: Elegant Form --- */
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  padding: 4rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.editorial-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.editorial-input-group {
+  position: relative;
+  width: 100%;
+}
+
+/* Stripped down, classic input styling */
+.editorial-input-group input,
+.editorial-input-group textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  outline: none;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+/* The Floating Label */
+.editorial-input-group label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* When the input is focused OR has text in it, the label shrinks and floats up */
+.editorial-input-group input:focus ~ label,
+.editorial-input-group input:not(:placeholder-shown) ~ label,
+.editorial-input-group textarea:focus ~ label,
+.editorial-input-group textarea:not(:placeholder-shown) ~ label {
+  top: -20px;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* The Animated Accent Line */
+.focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-input-group input:focus ~ .focus-border,
+.editorial-input-group textarea:focus ~ .focus-border {
+  transform: scaleX(1);
+}
+
+/* The Submit Button */
+.btn-editorial-submit {
+  align-self: flex-start;
+  margin-top: 1rem;
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-editorial-submit .arrow {
+  transition: transform 0.3s ease;
+}
+
+.btn-editorial-submit:hover {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.btn-editorial-submit:hover .arrow {
+  transform: translateX(10px);
+}
+
+/* Responsiveness - Tablet */
+@media (max-width: 992px) {
+  .editorial-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .contact-right {
+    padding: 3rem 2rem;
+  }
+}
+
+/* Responsiveness - Phone */
+@media (max-width: 576px) {
+  .contact-section {
+    padding: 4rem 0;
+    min-height: auto;
+  }
+  .editorial-contact-grid {
+    gap: 2rem;
+  }
+  .contact-headline {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-bottom: 1rem;
+  }
+  .contact-subhead {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .contact-info-list {
+    gap: 1.5rem;
+  }
+  .info-row {
+    gap: 1rem;
+  }
+  .info-icon {
+    font-size: 1.5rem;
+  }
+  .info-label {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+  .info-value {
+    font-size: 1rem;
+    word-break: break-all;
+  }
+  .contact-right {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+  .editorial-form {
+    gap: 2rem;
+  }
+  .form-row-split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .editorial-input-group input,
+  .editorial-input-group textarea {
+    font-size: 1rem;
+    padding: 8px 0;
+  }
+  .editorial-input-group label {
+    font-size: 1rem;
+  }
+  .btn-editorial-submit {
+    font-size: 1.1rem;
+    gap: 0.5rem;
+  }
+}
