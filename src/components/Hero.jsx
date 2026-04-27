@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiArrowRight, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import profileImg from '../assets/profile.png';
 import './Hero.css';
 
@@ -9,9 +9,8 @@ const Hero = () => {
   // Interactive Parallax Effect
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Calculates how far the mouse is from the center of the screen
-      const x = (e.clientX / window.innerWidth - 0.5) * 40; // Max movement 20px
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
+      const x = (e.clientX / window.innerWidth - 0.5) * 30; 
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
       setMousePosition({ x, y });
     };
 
@@ -28,7 +27,7 @@ const Hero = () => {
           src={profileImg}
           alt="Ambient Background"
           className="hero-ambient-image"
-          style={{ transform: `translate(${-mousePosition.x * 0.5}px, ${-mousePosition.y * 0.5}px) scale(1.1)` }}
+          style={{ transform: `translate(${-mousePosition.x * 0.4}px, ${-mousePosition.y * 0.4}px) scale(1.1)` }}
         />
       </div>
 
@@ -38,57 +37,57 @@ const Hero = () => {
         <div className="theme-orb orb-bottom"></div>
       </div>
 
-      {/* Unique Editorial Grid Layout with 3D Parallax Mouse Tracking */}
+      {/* Main Content Grid */}
       <div
         className="container hero-editorial-grid"
         style={{
-          transform: `perspective(1000px) rotateY(${mousePosition.x * 0.2}deg) rotateX(${-mousePosition.y * 0.2}deg) translate(${mousePosition.x}px, ${mousePosition.y}px)`
+          transform: `perspective(1200px) rotateY(${mousePosition.x * 0.15}deg) rotateX(${-mousePosition.y * 0.15}deg) translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`
         }}
       >
 
-        {/* Left Side: Avant-Garde Typography */}
+        {/* Left Side: Cinematic Typography */}
         <div className="editorial-left">
           <h1 className="editorial-title">
-            <div className="title-row animate-slide-up">
-              <span className="continuous-float delay-1">A</span>
-              <span className="continuous-float delay-2">N</span>
-              <span className="continuous-float outline-char delay-3">U</span>
-              <span className="continuous-float delay-4">J</span>
+            <div className="title-row">
+              <span className="reveal-text">A</span>
+              <span className="reveal-text" style={{ animationDelay: '0.1s' }}>N</span>
+              <span className="reveal-text outline-char" style={{ animationDelay: '0.2s' }}>U</span>
+              <span className="reveal-text" style={{ animationDelay: '0.3s' }}>J</span>
             </div>
-            <div className="title-row indent animate-slide-up delay-200">
-              <span className="continuous-float outline-char delay-5">C</span>
-              <span className="continuous-float delay-6">H</span>
-              <span className="continuous-float delay-7">A</span>
-              <span className="continuous-float outline-char delay-8">N</span>
-              <span className="continuous-float delay-9">D</span>
-              <span className="continuous-float accent-dot delay-10">.</span>
+            <div className="title-row indent">
+              <span className="reveal-text outline-char" style={{ animationDelay: '0.4s' }}>C</span>
+              <span className="reveal-text" style={{ animationDelay: '0.5s' }}>H</span>
+              <span className="reveal-text" style={{ animationDelay: '0.6s' }}>A</span>
+              <span className="reveal-text outline-char" style={{ animationDelay: '0.7s' }}>N</span>
+              <span className="reveal-text" style={{ animationDelay: '0.8s' }}>D</span>
+              <span className="reveal-text accent-dot" style={{ animationDelay: '0.9s' }}>.</span>
             </div>
           </h1>
         </div>
 
-        {/* Right Side: Structured Information */}
+        {/* Right Side: Structured Bio & Actions */}
         <div className="editorial-right">
 
-          <div className="editorial-meta animate-fade-in delay-300">
-            <span className="meta-number continuous-pulse">01</span>
-            {/* The line continuously stretches and shrinks */}
-            <div className="meta-line continuous-stretch"></div>
+          <div className="editorial-meta">
+            <span className="meta-number">01</span>
+            <div className="meta-line"></div>
             <span className="meta-label">Digital Craftsmanship</span>
           </div>
 
-          <div className="editorial-bio animate-fade-in delay-400">
+          <div className="editorial-bio">
             <p>MERN Stack Developer | Building Scalable Web Applications</p>
-            <br></br>
-            <p>A computer science engineer focused on MERN stack, problem-solving, and creating real-world solutions that make an impact.</p>
+            <p style={{ marginTop: '1rem', fontStyle: 'normal', fontSize: '1rem', opacity: 0.8 }}>
+              Computer Science Engineer focused on problem-solving and creating high-impact real-world solutions.
+            </p>
           </div>
 
-          <div className="editorial-actions animate-fade-in delay-500">
-            <a href="#projects" className="btn-editorial continuous-glow">
-              Explore Work <FiArrowRight className="icon-right continuous-bounce" />
+          <div className="editorial-actions">
+            <a href="#projects" className="btn-editorial">
+              Explore Work <FiArrowRight className="icon-right" />
             </a>
 
             <div className="editorial-socials">
-              <a href="#" className="social-link">GH</a>
+              <a href="https://github.com/anujX-01" target="_blank" rel="noreferrer" className="social-link">GH</a>
               <span className="separator">/</span>
               <a href="#" className="social-link">IN</a>
               <span className="separator">/</span>

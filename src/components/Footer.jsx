@@ -50,7 +50,7 @@ const Footer = () => {
 
       {/* Bottom Info Bar */}
       <div className="container">
-        <div className="footer-bottom-bar">
+        <div className="footer-bottom-bar animate-on-scroll" data-animation="animate-up">
 
           <div className="footer-left-info">
             <span className="footer-year">{new Date().getFullYear()}</span>

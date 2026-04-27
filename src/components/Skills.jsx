@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaFigma, FaNodeJs, FaCode } from 'react-icons/fa';
 import { SiTailwindcss, SiVite, SiTypescript, SiMongodb, SiExpress } from 'react-icons/si';
 import './Skills.css';
 
 const Skills = () => {
-  // I kept ALL your original content and added MongoDB, Express, and Node.js 
-  // because you mentioned you are a MERN stack developer!
+  const gridRef = useRef(null);
+
   const skills = [
     { name: 'MongoDB', icon: <SiMongodb color="#47A248" />, category: 'Database' },
     { name: 'Express.js', icon: <SiExpress color="#888888" />, category: 'Backend' },
@@ -22,26 +22,55 @@ const Skills = () => {
     { name: 'Data Structure and Algorithm', icon: <FaCode color="#A855F7" />, category: 'Problem Solving' }
   ];
 
+  // Simple Staggered Reveal
+  useEffect(() => {
+    const cards = gridRef.current?.querySelectorAll('.skill-card');
+    if (!cards) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="skills" className="skills-section">
       <div className="container">
 
-        {/* Editorial Style Header */}
+        {/* Professional Editorial Header */}
         <div className="editorial-header animate-on-scroll" data-animation="animate-up">
           <span className="chapter-number">03 //</span>
-          <h2 className="chapter-title">Technical Arsenal</h2>
+          <h2 className="chapter-title">Technical Expertise</h2>
         </div>
 
-        {/* Pure Animated Logo Grid (4 Columns) */}
-        <div className="animated-logo-grid animate-on-scroll" data-animation="animate-up">
+        {/* Clear & Professional Grid */}
+        <div className="skills-grid" ref={gridRef}>
           {skills.map((skill, index) => (
             <div 
               key={skill.name} 
-              className="logo-item-wrapper"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="skill-card"
+              style={{ transitionDelay: `${index * 0.05}s` }}
             >
-              <div className="logo-icon">{skill.icon}</div>
-              <div className="logo-name">{skill.name}</div>
+              <div className="skill-icon-wrapper">
+                {skill.icon}
+              </div>
+              <div className="skill-info">
+                <h3 className="skill-name">{skill.name}</h3>
+                <span className="skill-category">{skill.category}</span>
+              </div>
+              
+              {/* Subtle accent line that grows on hover */}
+              <div className="skill-accent-line"></div>
             </div>
           ))}
         </div>

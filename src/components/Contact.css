@@ -1,4 +1,4 @@
-/* CONTACT SECTION - EDITORIAL LAYOUT */
+/* CONTACT SECTION — PREMIUM EDITORIAL LAYOUT */
 
 .contact-section {
   padding: 8rem 0;
@@ -7,7 +7,31 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Radial ambient glow decoration */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(var(--accent-rgb, 59, 130, 246), 0.08), transparent 70%);
+  pointer-events: none;
+  animation: contactGlowFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes contactGlowFloat {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(5%, -8%); }
+}
+
+/* =========================================
+   GRID
+   ========================================= */
 
 .editorial-contact-grid {
   display: grid;
@@ -16,7 +40,10 @@
   margin-top: 2rem;
 }
 
-/* --- Left Side: Information --- */
+/* =========================================
+   LEFT — Info
+   ========================================= */
+
 .contact-left {
   display: flex;
   flex-direction: column;
@@ -31,6 +58,10 @@
   color: var(--text-primary);
   line-height: 1.2;
   margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 50%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-subhead {
@@ -38,31 +69,44 @@
   font-size: 1.1rem;
   color: var(--text-secondary);
   margin-bottom: 4rem;
+  line-height: 1.7;
 }
 
 .contact-info-list {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .info-row {
   display: flex;
   align-items: center;
   gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+  cursor: default;
+}
+
+.info-row:hover {
+  border-color: rgba(var(--accent-rgb, 59, 130, 246), 0.2);
+  background: rgba(var(--accent-rgb, 59, 130, 246), 0.04);
+  transform: translateX(8px);
 }
 
 .info-icon {
   font-size: 2rem;
   color: var(--text-primary);
-  opacity: 0.5;
-  transition: all 0.4s ease;
+  opacity: 0.4;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .info-row:hover .info-icon {
   opacity: 1;
   color: var(--accent-color);
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .info-details {
@@ -76,30 +120,53 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .info-value {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-a.info-value:hover {
-  color: var(--accent-color);
-}
+a.info-value:hover { color: var(--accent-color); }
 
-/* --- Right Side: Elegant Form --- */
+/* =========================================
+   RIGHT — Form
+   ========================================= */
+
 .contact-right {
   display: flex;
   flex-direction: column;
   background: var(--bg-secondary);
   padding: 4rem;
-  border-radius: 20px;
+  border-radius: 24px;
   border: 1px solid var(--border-color);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+
+/* Animated top-right corner accent */
+.contact-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: conic-gradient(from 225deg, var(--accent-color) 0%, transparent 40%);
+  opacity: 0.12;
+  border-radius: 0 24px 0 120px;
+  pointer-events: none;
+}
+
+.contact-right:hover {
+  box-shadow: 0 30px 80px rgba(var(--accent-rgb, 59, 130, 246), 0.12);
 }
 
 .editorial-form {
@@ -114,18 +181,21 @@ a.info-value:hover {
   gap: 2rem;
 }
 
+/* =========================================
+   FLOATING-LABEL INPUTS
+   ========================================= */
+
 .editorial-input-group {
   position: relative;
   width: 100%;
 }
 
-/* Stripped down, classic input styling */
 .editorial-input-group input,
 .editorial-input-group textarea {
   width: 100%;
   padding: 10px 0;
   font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-primary);
   background: transparent;
   border: none;
@@ -135,45 +205,46 @@ a.info-value:hover {
   transition: border-color 0.3s ease;
 }
 
-/* The Floating Label */
+/* Floating label */
 .editorial-input-group label {
   position: absolute;
   top: 10px;
   left: 0;
   font-family: 'Georgia', serif;
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-secondary);
   pointer-events: none;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* When the input is focused OR has text in it, the label shrinks and floats up */
+/* Float label up when focused or filled */
 .editorial-input-group input:focus ~ label,
 .editorial-input-group input:not(:placeholder-shown) ~ label,
 .editorial-input-group textarea:focus ~ label,
 .editorial-input-group textarea:not(:placeholder-shown) ~ label {
-  top: -20px;
-  font-size: 0.85rem;
+  top: -22px;
+  font-size: 0.8rem;
   color: var(--accent-color);
   font-family: 'Inter', sans-serif;
   font-style: normal;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
-/* The Animated Accent Line */
+/* Animated accent underline */
 .focus-border {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--accent-color);
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
 }
 
 .editorial-input-group input:focus ~ .focus-border,
@@ -181,7 +252,10 @@ a.info-value:hover {
   transform: scaleX(1);
 }
 
-/* The Submit Button */
+/* =========================================
+   SUBMIT BUTTON
+   ========================================= */
+
 .btn-editorial-submit {
   align-self: flex-start;
   margin-top: 1rem;
@@ -197,89 +271,62 @@ a.info-value:hover {
   gap: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 3px solid var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background fill on hover */
+.btn-editorial-submit::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-editorial-submit .arrow {
-  transition: transform 0.3s ease;
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 1.8rem;
 }
 
 .btn-editorial-submit:hover {
   color: var(--accent-color);
-  border-bottom-color: var(--accent-color);
+  border-bottom-color: transparent;
 }
 
-.btn-editorial-submit:hover .arrow {
-  transform: translateX(10px);
-}
+.btn-editorial-submit:hover::before { width: 100%; }
+.btn-editorial-submit:hover .arrow { transform: translateX(10px) scale(1.2); }
 
-/* Responsiveness - Tablet */
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
 @media (max-width: 992px) {
-  .editorial-contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .contact-right {
-    padding: 3rem 2rem;
-  }
+  .editorial-contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-right { padding: 3rem 2rem; }
 }
 
-/* Responsiveness - Phone */
 @media (max-width: 576px) {
-  .contact-section {
-    padding: 4rem 0;
-    min-height: auto;
-  }
-  .editorial-contact-grid {
-    gap: 2rem;
-  }
-  .contact-headline {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-    margin-bottom: 1rem;
-  }
-  .contact-subhead {
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
-  .contact-info-list {
-    gap: 1.5rem;
-  }
-  .info-row {
-    gap: 1rem;
-  }
-  .info-icon {
-    font-size: 1.5rem;
-  }
-  .info-label {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-  }
-  .info-value {
-    font-size: 1rem;
-    word-break: break-all;
-  }
-  .contact-right {
-    padding: 1.5rem;
-    border-radius: 15px;
-  }
-  .editorial-form {
-    gap: 2rem;
-  }
-  .form-row-split {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  .contact-section { padding: 4rem 0; min-height: auto; }
+  .contact-section::before { display: none; }
+  .editorial-contact-grid { gap: 2rem; }
+  .contact-headline { margin-bottom: 1rem; }
+  .contact-subhead { font-size: 0.95rem; margin-bottom: 2rem; }
+  .contact-info-list { gap: 1rem; }
+  .info-row { padding: 1rem; gap: 1rem; }
+  .info-icon { font-size: 1.5rem; }
+  .info-label { font-size: 0.7rem; letter-spacing: 1px; }
+  .info-value { font-size: 1rem; word-break: break-all; }
+  .contact-right { padding: 1.5rem; border-radius: 15px; }
+  .editorial-form { gap: 2rem; }
+  .form-row-split { grid-template-columns: 1fr; gap: 2rem; }
   .editorial-input-group input,
-  .editorial-input-group textarea {
-    font-size: 1rem;
-    padding: 8px 0;
-  }
-  .editorial-input-group label {
-    font-size: 1rem;
-  }
-  .btn-editorial-submit {
-    font-size: 1.1rem;
-    gap: 0.5rem;
-  }
+  .editorial-input-group textarea { font-size: 1rem; padding: 8px 0; }
+  .editorial-input-group label { font-size: 1rem; }
+  .btn-editorial-submit { font-size: 1.1rem; gap: 0.5rem; }
 }

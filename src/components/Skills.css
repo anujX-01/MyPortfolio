@@ -1,181 +1,156 @@
-/* SKILLS SECTION - PURE LOGO GRID (4 COLUMNS) */
+/* SKILLS SECTION — CLEAR & PROFESSIONAL GRID */
 
 .skills-section {
-  padding: 3rem 0;
+  padding: 8rem 0;
   background-color: var(--bg-primary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.animated-logo-grid {
-  width: 100%;
-  max-width: 1200px;
-  margin: 1.5rem auto 0;
-  display: grid;
-  /* Exactly 4 columns as requested */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem 6rem; /* Compressed vertical even more, expanded horizontal */
-  padding: 0 1rem;
-  justify-items: center;
-}
-
-/* Individual Logo Container */
-.logo-item-wrapper {
   position: relative;
-  width: 120px;
-  height: 120px;
+  overflow: hidden;
+}
+
+/* =========================================
+   SKILLS GRID
+   ========================================= */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+/* =========================================
+   SKILL CARD
+   ========================================= */
+
+.skill-card {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
+  gap: 1.5rem;
+  padding: 1.8rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   
-  /* Unique Classic Border */
-  border-radius: 2rem;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  /* Initial Entry Animation */
+  /* Initial state for reveal */
   opacity: 0;
   transform: translateY(30px);
-  animation: logoRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes logoRise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.skill-card.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* The Logo/Icon */
-.logo-icon {
-  font-size: 4rem; /* Slightly smaller to fit better */
-  color: var(--text-primary);
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centered exactly */
-  z-index: 2;
+/* Hover State */
+.skill-card:hover {
+  transform: translateY(-8px);
+  background: var(--bg-primary);
+  border-color: var(--accent-color);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(var(--accent-rgb, 59, 130, 246), 0.2);
 }
 
-/* The Reveal Name */
-.logo-name {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.2;
+/* =========================================
+   ICON WRAPPER
+   ========================================= */
+
+.skill-icon-wrapper {
+  font-size: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: grayscale(20%);
+}
+
+.skill-card:hover .skill-icon-wrapper {
+  transform: scale(1.15) rotate(-5deg);
+  filter: grayscale(0%);
+}
+
+/* =========================================
+   INFO (TEXT)
+   ========================================= */
+
+.skill-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.skill-name {
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.skill-category {
+  font-family: monospace;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: center;
-  
-  /* Hidden by default */
-  opacity: 0;
-  position: absolute;
-  bottom: 12px; /* Placed cleanly INSIDE the border at the bottom */
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  width: 90%; /* Keeps it from hitting the left/right borders */
-  z-index: 1;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  opacity: 0.8;
 }
 
-/* --- ADVANCED HOVER ANIMATIONS --- */
-
-/* 0. Wrapper border illuminates on hover */
-.logo-item-wrapper:hover {
-  border: 1px solid var(--accent-color);
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-[data-theme='light'] .logo-item-wrapper {
-  border: 1px dashed rgba(0, 0, 0, 0.15);
-}
-
-[data-theme='light'] .logo-item-wrapper:hover {
-  border: 1px solid var(--accent-color);
-  background-color: rgba(0, 0, 0, 0.02);
-}
-
-/* 1. Logo lifts up, gets smaller, and bursts into color */
-.logo-item-wrapper:hover .logo-icon {
-  transform: translate(-50%, -75%) scale(0.75); /* Moves up inside the box */
-  filter: grayscale(0%);
-  opacity: 1;
-  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* 2. The Name fades in below it */
-.logo-item-wrapper:hover .logo-name {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+.skill-card:hover .skill-name {
   color: var(--accent-color);
 }
 
-/* Add a subtle glowing orb behind the logo on hover for that premium feel */
-.logo-item-wrapper::before {
-  content: '';
+/* =========================================
+   ACCENT LINE
+   ========================================= */
+
+.skill-accent-line {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-  opacity: 0;
-  border-radius: 50%;
-  transition: all 0.5s ease;
-  z-index: 0;
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 0 0 16px 16px;
 }
 
-.logo-item-wrapper:hover::before {
-  transform: translate(-50%, -60%) scale(1.5);
-  opacity: 0.15;
+.skill-card:hover .skill-accent-line {
+  width: 100%;
 }
 
-/* Responsiveness */
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
 @media (max-width: 992px) {
-  .animated-logo-grid {
-    grid-template-columns: repeat(3, 1fr); /* Drops to 3 columns on tablet */
-    gap: 3rem 2rem;
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 576px) {
   .skills-section {
-    padding: 3rem 0;
-    min-height: auto;
+    padding: 4rem 0;
   }
-  .animated-logo-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on mobile */
-    gap: 2rem 1.5rem;
-    padding: 0 0.5rem;
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  .logo-item-wrapper {
-    width: 90px;
-    height: 90px;
-    border-radius: 1.5rem;
+  .skill-card {
+    padding: 1.2rem;
+    gap: 1.2rem;
   }
-  .logo-icon {
-    font-size: 2.8rem;
+  .skill-icon-wrapper {
+    font-size: 2.2rem;
   }
-  .logo-name {
-    font-size: 0.55rem;
-    bottom: 8px;
-    letter-spacing: 0;
-    width: 95%;
+  .skill-name {
+    font-size: 1rem;
   }
-  .logo-item-wrapper:hover .logo-icon {
-    transform: translate(-50%, -65%) scale(0.7);
-  }
-  .logo-item-wrapper:hover::before {
-    transform: translate(-50%, -60%) scale(1);
+  .skill-category {
+    font-size: 0.65rem;
   }
 }

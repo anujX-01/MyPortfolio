@@ -6,14 +6,14 @@ const About = () => {
     <section id="about" className="about-section">
       <div className="container">
 
-        {/* Simple, Classic Header */}
+        {/* Section Header */}
         <div className="editorial-header animate-on-scroll" data-animation="animate-up">
           <span className="chapter-number">02 //</span>
           <h2 className="chapter-title">About Me</h2>
         </div>
 
-        {/* The Newspaper / Magazine Column Layout */}
-        <div className="editorial-article animate-on-scroll" data-animation="animate-up">
+        {/* Magazine Column Layout */}
+        <div className="editorial-article animate-on-scroll" data-animation="animate-up" data-delay="0.1">
           <p className="article-text">
             <span className="drop-cap">H</span>ello! I'm Anuj, a <span className="highlight-text">full-stack developer</span> focused on building scalable and user-friendly web applications. I enjoy turning complex problems into simple, efficient, and intuitive digital solutions that deliver real value to users.
           </p>
@@ -25,11 +25,11 @@ const About = () => {
           </p>
         </div>
 
-        {/* The Classic Stat Footer */}
-        <div className="editorial-footer animate-on-scroll" data-animation="animate-up">
+        {/* Animated Stat Footer */}
+        <div className="editorial-footer animate-on-scroll" data-animation="animate-up" data-delay="0.2">
           <div className="stat-block">
             <span className="stat-value">1+</span>
-            <span className="stat-label">YEARS LEARNING & BUILDING</span>
+            <span className="stat-label">Years Learning &amp; Building</span>
           </div>
           <div className="stat-block">
             <span className="stat-value">10+</span>

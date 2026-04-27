@@ -16,7 +16,7 @@ const Contact = () => {
         <div className="editorial-contact-grid">
 
           {/* Left Side: Information */}
-          <div className="contact-left animate-on-scroll" data-animation="animate-up">
+          <div className="contact-left animate-on-scroll" data-animation="animate-left" data-delay="0.1">
             <h3 className="contact-headline">Let's talk about everything!</h3>
             <p className="contact-subhead">
               Don't like forms? Send me an email. 👋
@@ -42,7 +42,7 @@ const Contact = () => {
           </div>
 
           {/* Right Side: Elegant Floating-Line Form */}
-          <div className="contact-right animate-on-scroll" data-animation="animate-up">
+          <div className="contact-right animate-on-scroll" data-animation="animate-right" data-delay="0.2">
             <form className="editorial-form" action="https://formspree.io/f/mgordgdq" method="POST">
 
               <div className="form-row-split">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,11 +10,10 @@ import ScrollProgress from './components/ScrollProgress';
 import { useScrollAnimation } from './hooks/useScrollAnimation';
 
 function App() {
-  // Use custom hook to trigger scroll animations
   useScrollAnimation();
 
-  // State for theme management (light/dark mode)
   const [theme, setTheme] = useState('dark');
+  const cursorGlowRef = useRef(null);
 
   // Load theme from localStorage on initial render
   useEffect(() => {
@@ -23,9 +22,20 @@ function App() {
       setTheme(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else {
-      // Default to dark theme
       document.documentElement.setAttribute('data-theme', 'dark');
     }
+  }, []);
+
+  // Ambient cursor glow that follows the mouse
+  useEffect(() => {
+    const glow = cursorGlowRef.current;
+    if (!glow) return;
+    const handleMouseMove = (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const toggleTheme = () => {
@@ -37,6 +47,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* Ambient cursor glow overlay */}
+      <div className="cursor-glow" ref={cursorGlowRef} aria-hidden="true" />
+
       <ScrollProgress />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>

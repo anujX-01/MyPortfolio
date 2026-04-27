@@ -1,27 +1,43 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-// This hook uses Intersection Observer to detect when elements enter the screen.
-// When they do, it adds the specific animation class so they animate in.
+/**
+ * Advanced scroll animation hook.
+ * Uses IntersectionObserver to add the animation class to elements when they enter the viewport.
+ * Supports data-animation to customise the reveal direction.
+ * Supports data-delay for staggered timing.
+ */
 export const useScrollAnimation = () => {
+  const observerRef = useRef(null);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Check what kind of animation the element wants based on its dataset
-            const animationType = entry.target.dataset.animation || 'animate-up';
-            entry.target.classList.add(animationType);
-            // Once animated, we don't need to observe it anymore
-            observer.unobserve(entry.target);
+            const el = entry.target;
+            const animationType = el.dataset.animation || 'animate-up';
+            const delay = el.dataset.delay || '0';
+
+            // Apply delay before adding the class so CSS transition fires after delay
+            setTimeout(() => {
+              el.classList.add(animationType);
+            }, parseFloat(delay) * 1000);
+
+            observerRef.current.unobserve(el);
           }
         });
       },
-      { threshold: 0.1 } // Trigger when 10% of the element is visible
+      {
+        threshold: 0.08,        // Fire when 8% is visible
+        rootMargin: '0px 0px -40px 0px', // Triggers slightly before bottom edge
+      }
     );
 
     const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => observerRef.current.observe(el));
 
-    return () => observer.disconnect();
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
   }, []);
 };
