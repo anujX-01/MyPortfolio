@@ -29,12 +29,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.12; 
+  opacity: 0.18; /* Increased from 0.12 for better laptop visibility */
   transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: grayscale(100%) contrast(1.1);
-  mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+  filter: grayscale(100%) contrast(1.15);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
 }
+
+@media (max-width: 1024px) {
+  .hero-ambient-image {
+    opacity: 0.25; /* Higher visibility on mobile/tablet screens */
+  }
+}
+
 
 [data-theme='light'] .hero-ambient-image {
   opacity: 0.18;

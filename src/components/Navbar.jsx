@@ -8,7 +8,7 @@ import './Navbar.css';
  * Starts hidden by default.
  */
 const useNavbarVisibility = (delay = 2500) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const timerRef = useRef(null);
 
   const resetTimer = useCallback(() => {
@@ -59,8 +59,8 @@ const Navbar = ({ theme, toggleTheme }) => {
   return (
     <nav
       className={`navbar ${isScrolled ? 'scrolled' : ''} ${
-        !isVisible ? 'navbar--hidden' : ''
-      }`}
+        mobileMenuOpen ? 'menu-open' : ''
+      } ${!isVisible ? 'navbar--hidden' : ''}`}
     >
       <div className="nav-container">
         <a href="#home" className="logo">Anuj<span className="dot">.</span></a>
