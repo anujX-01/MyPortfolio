@@ -89,10 +89,9 @@ const Hero = () => {
             <div className="editorial-socials">
               <a href="https://github.com/anujX-01" target="_blank" rel="noreferrer" className="social-link">GH</a>
               <span className="separator">/</span>
-              <a href="#" className="social-link">IN</a>
-              <span className="separator">/</span>
-              <a href="#" className="social-link">TW</a>
+              <a href="/assets/resume.pdf" download className="social-link">Download Resume</a>
             </div>
+
           </div>
 
         </div>
