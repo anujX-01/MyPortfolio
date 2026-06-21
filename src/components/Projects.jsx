@@ -21,16 +21,16 @@ const Projects = () => {
       description: 'An AI-powered personal finance app that tracks expenses and investments while providing intelligent financial insights via Google Gemini.',
       tags: ['React', 'TypeScript', 'Supabase', 'Gemini AI'],
       image: '/ShizenFlow.png',
-      github: 'https://github.com/anujX-01',,
+      github: 'https://github.com/anujX-01',
       live: 'https://www.shizenflow.store/'
     },
     {
       id: 3,
       title: 'Gyan Jyoti Seva Samiti – NGO Website',
-      description: 'Developed a responsive and user-friendly website for an NGO focused on showcasing its mission, activities, and services for special children. Clear navigation across About, Admissions, Gallery, and Contact sections.',
+      description: 'Developed a responsive and user-friendly website for an NGO focused on showcasing its mission, activities, and     services for special children. Clear navigation across About, Admissions, Gallery, and Contact sections.',
       tags: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap 5', 'Font Awesome'],
       image: '/Gyan Jyoti Seva Samiti – NGO Website.png',
-      github: 'https://github.com/anujX-01/school-website',
+      github: 'https://github.com/anujX-01',
       live: 'https://github.com/anujX-01/school-website'
     }
   ];
@@ -86,7 +86,7 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className="project-links">
-                  <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                   <a href="https://github.com/anujX-01" target="_blank" rel="noreferrer" aria-label="GitHub">
                     <FiGithub />
                   </a>
                 </div>
