@@ -12,7 +12,7 @@ const Projects = () => {
       description: 'A privacy-focused web app for sending anonymous emotional messages. Features a human-moderated workflow and delivers messages securely through Instagram.',
       tags: ['JavaScript', 'Google Apps Script', 'Google Sheets', 'Vercel'],
       image: '/sayitforyou.png',
-      github: '#',
+      github: 'https://github.com/anujX-01',
       live: 'https://sayitforyou.fun'
     },
     {
@@ -21,7 +21,7 @@ const Projects = () => {
       description: 'An AI-powered personal finance app that tracks expenses and investments while providing intelligent financial insights via Google Gemini.',
       tags: ['React', 'TypeScript', 'Supabase', 'Gemini AI'],
       image: '/ShizenFlow.png',
-      github: '#',
+      github: 'https://github.com/anujX-01',,
       live: 'https://www.shizenflow.store/'
     },
     {
