@@ -89,9 +89,6 @@ const Projects = () => {
                   <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
                     <FiGithub />
                   </a>
-                  <a href={project.live} target="_blank" rel="noreferrer" aria-label="Live Demo">
-                    <FiExternalLink />
-                  </a>
                 </div>
               </div>
             </div>

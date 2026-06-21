@@ -91,7 +91,7 @@ const Hero = () => {
               <span className="separator">/</span>
               <a href="/assets/resume.pdf" target="_blank" rel="noreferrer" className="social-link">View Resume</a>
               <span className="separator">/</span>
-              <a href="/assets/resume.pdf" download className="social-link">Download Resume</a>
+                             <a href="/assets/resume.pdf" download="resume.pdf" className="social-link">Download Resume</a>
             </div>
 
           </div>
